@@ -1,0 +1,40 @@
+{% extends 'base.html' %}
+
+{% block content %}
+
+<br/>
+{% if error %}
+{{error}}
+<br/>
+{% endif %}
+</br>
+<h1><b>Create</b></h1>
+
+<form method="POST" action="{% url 'create' %}" enctype="multipart/form-data">
+{% csrf_token %}
+<br/>
+<b>Title:</b>
+<br/>
+<input type="text" name="title" />
+<br/>
+<b>Body:</b>
+<br/>
+<textarea cols="50" rows="5" name="body"></textarea>
+<br/>
+<b>URL:</b>
+<br/>
+<input type="text" name="url" />
+<br/>
+<b>Icon:</b>
+<br/>
+<input type="file" name="icon" />
+<br/>
+<b>Image:</b>
+<br/>
+<input type="file" name="image" />
+<br/>
+<br/>
+<input class="btn btn-primary" type="submit" value="Add Product"/>
+</form>
+
+{% endblock %}
