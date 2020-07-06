@@ -2,6 +2,7 @@ from django.shortcuts import render, redirect, get_object_or_404
 from django.contrib.auth.decorators import login_required
 from .models import Product
 from django.utils import timezone
+from .models import Upvote
 
 # Create your views here.
 def home(request):
@@ -36,6 +37,9 @@ def detail(request,product_id):
 	product=get_object_or_404(Product, pk=product_id)
 	return render(request,'products/detail.html',{'product':product})
 
+#Upvote functionality
+
+'''
 @login_required(login_url="/accounts/signup")
 def upvote(request,product_id):
 	if request.method=='POST':
@@ -43,3 +47,26 @@ def upvote(request,product_id):
 		product.votes_total+=1
 		product.save()
 		return redirect('/products/'+str(product.id))
+'''
+
+#Upvote once implementation
+
+@login_required(login_url="/accounts/signup")
+def upvote(request,product_id):
+	if request.method=='POST':
+		product = get_object_or_404(Product,pk=product_id)
+		upvotes = Upvote.objects.all()
+		for upvote in upvotes:
+			if upvote.product==product and upvote.voter==request.user:
+				return redirect('/products/' + str(product.id))
+
+		newupvote=Upvote()
+		newupvote.product=product
+		newupvote.voter=request.user
+		newupvote.save()
+		return redirect('/products/' + str(product.id))
+
+
+
+
+

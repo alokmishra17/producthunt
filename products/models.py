@@ -10,7 +10,7 @@ class Product(models.Model):
 	url=models.TextField()
 	image=models.ImageField(upload_to='images/')
 	icon=models.ImageField(upload_to='images/')
-	votes_total=models.IntegerField(default=1)
+	#votes_total=models.IntegerField(default=1)
 	#hunter
 	hunter=models.ForeignKey(User,on_delete=models.CASCADE)
 
@@ -26,4 +26,15 @@ class Product(models.Model):
 	def summary(self):
 		return self.body[:200]
 
+	def votes_total(self):
+		votes=0
+		for upvote in Upvote.objects.all():
+			if upvote.product==self:
+				votes+=1
+		return votes
+
+
+class Upvote(models.Model):
+	product= models.ForeignKey(Product,on_delete=models.CASCADE)
+	voter = models.ForeignKey(User,on_delete=models.CASCADE)
 
