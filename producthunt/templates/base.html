@@ -31,16 +31,36 @@
           font-size: 3.5rem;
         }
       }
+
+      .navbar-custom { 
+            background-color: black; 
+        } 
+
+      .btn-primary,
+      .btn-primary:hover
+      .btn-primary:active,
+      .btn-primary:visited,
+      .btn-primary:focus {
+          background-color: #00828c;
+          border-color: #00828c;
+          }
+      .btn-primary:hover {
+          background-color: #003542;
+          border-color: #003542
+          }
+      a:hover {
+          text-decoration: none;
+          }
     </style>
     <!-- Custom styles for this template 
   <link href="album.css" rel="stylesheet"> -->
   </head>
   <body>
     <header>
-  <nav class="navbar navbar-expand-lg navbar-light bg-light">
+  <nav class="navbar navbar-expand-lg navbar-dark navbar-custom">
   <div class="container">
   <a class="navbar-brand" href="{% url 'home' %}">
-  <img src="{% static 'logo.png' %}" height=32 width=32 class="d-inline-block align-bottom"></img><strong>Product Hunt </strong></a>
+  <img src="{% static 'logo.png' %}" height=32 width=32 class="d-inline-block align-bottom"></img><strong> Product Hunt </strong></a>
   <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarNavAltMarkup" aria-controls="navbarNavAltMarkup" aria-expanded="false" aria-label="Toggle navigation">
     <span class="navbar-toggler-icon"></span>
   </button>
